@@ -25,7 +25,7 @@ public class SlashCommandHandler extends ListenerAdapter {
                 }
                 EmbedBuilder eightBallBuilder;
                     eightBallBuilder = new EmbedBuilder()
-                            .setTitle(e.getOption("question").getAsString().replace("/?/", "") + "?")
+                            .setTitle(e.getOption("question").getAsString().replace("?", "") + "?")
                             .setImage("attachment://eightball.png");
                 e.replyEmbeds(eightBallBuilder.build())
                         .addFiles(FileUpload.fromData(new File("eightball.png")))
@@ -51,9 +51,9 @@ public class SlashCommandHandler extends ListenerAdapter {
                         .setDescription("``` /hubertwisdom --> get a wisdom from hubert!🤯 \n" +
                                 " /hubert8ball --> ask hubert anything!🤔💭 \n " +
                                 "\n\n" +
-                                "Text version: \n\n" +
-                                ".hubertwisdom --> get a wisdom from hubert!🤯 \n" +
-                                ".hubert8ball --> ask hubert anything!🤔💭```");
+                                " Text version: \n\n" +
+                                " .hubertwisdom --> get a wisdom from hubert!🤯 \n" +
+                                " .hubert8ball --> ask hubert anything!🤔💭```");
                 e.replyEmbeds(help.build()).queue();
         }
     }

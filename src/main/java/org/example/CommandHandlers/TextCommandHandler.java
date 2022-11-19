@@ -21,6 +21,7 @@ public class TextCommandHandler extends ListenerAdapter {
             case ".hubert8ball":
                 if(args.length < 2){
                     e.getMessage().reply("Ask me something!🤔").mentionRepliedUser(false).queue();
+                    return;
                 }
                 String eightBallText = eightBalls.get((int) Math.floor(Math.random() * eightBalls.size()));
                 try {
@@ -30,12 +31,13 @@ public class TextCommandHandler extends ListenerAdapter {
                 }
                 String question = "";
                 for(int i = 1; i < args.length; i++){
-                    question += args[1] + " ";
+                    question += args[i] + " ";
                 }
                 EmbedBuilder eightBallBuilder;
                 eightBallBuilder = new EmbedBuilder()
-                        .setTitle(question.replace("/?/", "") + "?")
+                        .setTitle(question.replace("?", "") + "?")
                         .setImage("attachment://eightball.png");
+                System.out.println(question);
                 e.getMessage().replyEmbeds(eightBallBuilder.build())
                         .addFiles(FileUpload.fromData(new File("eightball.png")))
                         .mentionRepliedUser(false)
@@ -54,15 +56,15 @@ public class TextCommandHandler extends ListenerAdapter {
                         .addFiles(FileUpload.fromData(new File("wisdom.png")))
                         .mentionRepliedUser(false).queue();
                 break;
-            case ".hubert": case "help":
+            case ".hubert": case ".help":
                 EmbedBuilder help = new EmbedBuilder()
                         .setTitle("I know all 🥳🙌")
                         .setDescription("``` /hubertwisdom --> get a wisdom from hubert!🤯 \n" +
                                 " /hubert8ball --> ask hubert anything!🤔💭 \n " +
                                 "\n\n" +
-                                "Text version: \n\n" +
-                                ".hubertwisdom --> get a wisdom from hubert!🤯 \n" +
-                                ".hubert8ball --> ask hubert anything!🤔💭```");
+                                " Text version: \n\n" +
+                                " .hubertwisdom --> get a wisdom from hubert!🤯 \n" +
+                                " .hubert8ball --> ask hubert anything!🤔💭```");
                 e.getMessage().replyEmbeds(help.build()).mentionRepliedUser(false).queue();
 
         }
